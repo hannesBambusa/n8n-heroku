@@ -1,1 +1,5 @@
-export * from "./BambusaConnect/BambusaConnectTrigger.node";
+// packages/nodes-base/nodes/index.ts
+
+import { BambusaConnectTrigger } from "./BambusaConnect/BambusaConnectTrigger.node";
+
+export { BambusaConnectTrigger };

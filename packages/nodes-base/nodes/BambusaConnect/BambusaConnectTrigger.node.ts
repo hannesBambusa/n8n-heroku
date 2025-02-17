@@ -1,65 +1,36 @@
+// packages/nodes-base/nodes/BambusaConnectTrigger.node.ts
+
 import {
+  INodeExecutionData,
   INodeType,
   INodeTypeDescription,
-  ITriggerFunctions,
 } from "n8n-workflow";
 
 export class BambusaConnectTrigger implements INodeType {
   description: INodeTypeDescription = {
     displayName: "Bambusa Connect Trigger",
     name: "bambusaConnectTrigger",
+    icon: "file:bambusaConnect.png",
     group: ["trigger"],
     version: 1,
-    description: "Listens for events from Bambusa Connect",
+    description: "Triggers events from Bambusa Connect",
     defaults: {
       name: "Bambusa Connect Trigger",
+      color: "#1F1F1F",
     },
     inputs: [],
     outputs: ["main"],
     credentials: [
       {
-        name: "bambusaConnectApi",
+        name: "BambusaConnectCredentials",
         required: true,
-      },
-    ],
-    properties: [
-      {
-        displayName: "Webhook URL",
-        name: "webhookUrl",
-        type: "string",
-        default: "",
-        required: true,
-      },
-      {
-        displayName: "Event Type",
-        name: "eventType",
-        type: "options",
-        options: [
-          { name: "Order Created", value: "orderCreated" },
-          { name: "Stock Updated", value: "stockUpdated" },
-        ],
-        default: "orderCreated",
+        testedBy: "bambusaConnectTrigger",
       },
     ],
   };
 
-  async trigger(this: ITriggerFunctions) {
-    const webhookUrl = this.getNodeParameter("webhookUrl") as string;
-    const eventType = this.getNodeParameter("eventType") as string;
-
-    // Listen for events
-    this.helpers.httpRequest({
-      method: "POST",
-      url: "https://api.bambusa.com/webhooks",
-      body: {
-        url: webhookUrl,
-        event: eventType,
-      },
-      json: true,
-    });
-
-    return {
-      workflowData: [[]],
-    };
+  async trigger(this: INodeType): Promise<INodeExecutionData[][]> {
+    // Implement your trigger logic here, such as making an API call to Bambusa Connect.
+    return [];
   }
 }

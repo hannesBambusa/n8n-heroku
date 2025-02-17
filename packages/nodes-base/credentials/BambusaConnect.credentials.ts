@@ -1,15 +1,27 @@
+// packages/nodes-base/credentials/BambusaConnect.credentials.ts
+
 import { ICredentialType, INodeProperties } from "n8n-workflow";
 
-export class BambusaConnectApi implements ICredentialType {
-  name = "bambusaConnectApi";
-  displayName = "Bambusa Connect API";
-  documentationUrl = "https://your-api-docs.com";
+export class BambusaConnectCredentials implements ICredentialType {
+  name = "BambusaConnectCredentials";
+  displayName = "Bambusa Connect";
+  documentationUrl = "https://docs.bambusaconnect.com";
   properties: INodeProperties[] = [
     {
       displayName: "API Key",
       name: "apiKey",
       type: "string",
+      required: true,
       default: "",
+      description: "Your Bambusa Connect API Key",
+    },
+    {
+      displayName: "API Secret",
+      name: "apiSecret",
+      type: "string",
+      required: true,
+      default: "",
+      description: "Your Bambusa Connect API Secret",
     },
   ];
 }
