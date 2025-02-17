@@ -24,4 +24,8 @@ export class BambusaConnectCredentials implements ICredentialType {
       description: "Your Bambusa Connect API Secret",
     },
   ];
+
+  constructor() {
+    console.log("BambusaConnectCredentials initialized"); // Add this for debugging
+  }
 }
